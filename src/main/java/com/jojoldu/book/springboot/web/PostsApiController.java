@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 
 @RestController
@@ -55,5 +57,33 @@ public class PostsApiController {
         return id;
 
     }
+
+    @GetMapping("/api/v1/posts")
+
+    public List<PostsResponseDto> findAll() {
+
+        return postsService.findAllDesc();                     // 위에서 만든 메서드 호출
+
+    }
+
+    @GetMapping("/api/v1/posts/author/{author}")
+
+    public List<PostsResponseDto> findByAuthor(@PathVariable String author) {
+
+        return postsService.findByAuthor(author);
+
+    }
+
+
+    @GetMapping("/api/v1/posts/search")
+
+    public List<PostsResponseDto> search(@RequestParam String keyword) {     // (1) URL ?keyword=...
+
+        return postsService.searchByTitle(keyword);
+
+    }
+
+
+
 
 }
