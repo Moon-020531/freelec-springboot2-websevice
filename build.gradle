@@ -59,4 +59,5 @@ dependencies {
     // MariaDB 드라이버 등록
     implementation 'org.mariadb.jdbc:mariadb-java-client'
 
+
 }
