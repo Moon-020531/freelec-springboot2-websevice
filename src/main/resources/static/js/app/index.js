@@ -16,6 +16,8 @@ var main = {
             title: $('#title').val(),
             author: $('#author').val(),
             content: $('#content').val()
+        }; if (!this.validateForm(data)) {                     // ❌ 이 줄은 잘못됨
+            return;
         }
         $.ajax({
             type: 'POST',
@@ -62,6 +64,17 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
+    },
+    validateForm : function (data) {
+        if (!data.title || data.title.trim() === '') {
+            alert('제목을 입력해주세요.');
+            return false;
+        }
+        if (!data.content|| data.content.trim() === '') {       // (1) 내용 검증
+            alert('내용을 입력해주세요.');
+            return false;
+        }
+        return true;
     }
 };
 
