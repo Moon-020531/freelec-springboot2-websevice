@@ -59,9 +59,5 @@ dependencies {
     // MariaDB 드라이버 등록
     implementation 'org.mariadb.jdbc:mariadb-java-client'
 
-    spring.mustache.charset=UTF-8
-    server.servlet.encoding.charset=UTF-8
-    server.servlet.encoding.enabled=true
-    server.servlet.encoding.force=true
 
 }
