@@ -32,4 +32,17 @@ public class IndexController {
         return "posts-update";
     }
 
+    @GetMapping("/posts/detail/{id}")                    // (1) URL 경로
+
+    public String postsDetail(@PathVariable Long id, Model model) {
+
+        PostsResponseDto dto = postsService.findById(id);
+
+        model.addAttribute("post", dto);
+
+        return "posts-detail";                                  // (2) View 이름
+
+    }
+
+
 }
