@@ -18,11 +18,11 @@ public class OAuthAttributes {
 
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey,
                            String name, String email, String picture) {
-        this.attributes       = attributes;
+        this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
-        this.name             = name;
-        this.email            = email;
-        this.picture          = picture;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
 
     }
 
@@ -33,7 +33,28 @@ public class OAuthAttributes {
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,
                                      Map<String, Object> attributes) {
+        if ("naver".equals(registrationId)) {                    // (1) 분기 키
+
+            return ofNaver(userNameAttributeName, attributes);
+        }
         return ofGoogle(userNameAttributeName, attributes);
+    }
+
+    private static OAuthAttributes ofNaver(String userNameAttributeName,
+
+                                           Map<String, Object> attributes) {
+
+        // 네이버는 응답이 nested → response 키로 한 번 들어가야 함
+
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");   // (2)
+
+        return OAuthAttributes.builder()
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("profile_image"))         // (3) 네이버 프로필 사진 키
+                .attributes(response)
+                .nameAttributeKey("id")
+                .build();
 
     }
 
@@ -61,5 +82,7 @@ public class OAuthAttributes {
                 .build();
 
     }
+
+
 
 }
