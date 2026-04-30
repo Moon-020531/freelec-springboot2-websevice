@@ -38,5 +38,8 @@ public class IndexController {
         model.addAttribute("post", dto);
         return "posts-update";
     }
-
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
 }

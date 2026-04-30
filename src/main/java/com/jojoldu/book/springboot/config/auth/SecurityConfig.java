@@ -22,7 +22,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth                                // authorizeRequests() → authorizeHttpRequests()
-                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
+                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile","/about").permitAll()
                         .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
                         .anyRequest().authenticated()
                 )
