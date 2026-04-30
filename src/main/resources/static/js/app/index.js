@@ -1,3 +1,9 @@
+function alertLogin() {
+    if (confirm('글을 등록하려면 로그인이 필요합니다.\n로그인 페이지로 이동할까요?')) {
+        window.location.href = '/oauth2/authorization/google';
+    }
+}
+
 var main = {
     init : function () {
         var _this = this;
@@ -11,7 +17,7 @@ var main = {
             _this.delete();
         });
     },
-    save : function () {
+save : function () {
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
@@ -63,6 +69,7 @@ var main = {
             alert(JSON.stringify(error));
         })
     }
+
 };
 
 main.init();
