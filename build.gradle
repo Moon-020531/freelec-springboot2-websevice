@@ -54,9 +54,14 @@ dependencies {
     // 머스타치 스타터 의존성 등록
     implementation('org.springframework.boot:spring-boot-starter-mustache')
 
+
     implementation 'org.springframework.session:spring-session-jdbc'
+
+    // Spring Security 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
     // MariaDB 드라이버 등록
     implementation 'org.mariadb.jdbc:mariadb-java-client'
+
 
 }
